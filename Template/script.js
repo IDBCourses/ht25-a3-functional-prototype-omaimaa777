@@ -7,3 +7,12 @@ const settings = {
   middleKeys: ["r", "t", "f","g"], // array of the middle lane keys
   rightKeys: ["y", "u", "h", "j", "n", "m"] //array of the right lane keys
 };
+
+//State - these change as the game is played
+let state = {
+  score: 0, //players current score
+  misses: 0, //How many letters player missed
+  isPlaying: false, // if the game is currently running
+  letters: [], //array to hold all falling letter objects
+  shiftHeld: false //if shift key is currently pressed
+};
