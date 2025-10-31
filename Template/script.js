@@ -179,3 +179,81 @@ function spawnLetter() {
     // Add this object to our array of letters
     state.letters.push(letterObject);
 }
+
+// Handle when a key is pressed down
+function handleKeyPress(event) {
+    const key = event.key.toLowerCase();  // Get the key that was pressed, make it lowercase
+    
+    // Check if it's the shift key
+    if (key === "shift") {
+        state.shiftHeld = true;  // Remember shift is being held
+        return;  // Don't do anything else
+    }
+    
+    // Only check for letter matches if game is running
+    if (!state.isPlaying) {
+        return;  // Exit if game not running
+    }
+    
+    // Loop through all falling letters to find a match (FOR LOOP)
+    for (let i = 0; i < state.letters.length; i++) {
+        const letter = state.letters[i];  // Get letter at position i
+        
+        // Check if this letter matches the key that was pressed
+        if (letter.letter === key) {
+            // Found a match! Now check if it's in the target zone
+            
+            // Calculate the target zone y position
+            const targetY = 400 - settings.targetZoneHeight;  // 400 - 60 = 340
+            
+            // Calculate distance from target
+            const distance = Math.abs(letter.y - targetY);  // Absolute value (always positive)
+            
+            // Check if letter is close enough to target zone
+            if (distance < settings.targetZoneHeight) {
+                // Success! Player caught the letter at the right time
+                
+                // Start with 10 points
+                let points = 10;
+                
+                // Double points if shift key is held down
+                if (state.shiftHeld) {
+                    points = points * 2;  // 10 * 2 = 20
+                }
+                
+                // Add points to the score
+                state.score = state.score + points;
+                scoreDisplay.textContent = state.score;  // Update score on screen
+                
+                // Show a message based on whether shift was used
+                if (state.shiftHeld) {
+                    messageDisplay.textContent = "BONUS! +" + points;
+                    messageDisplay.style.color = "gold";
+                } else {
+                    messageDisplay.textContent = "GOOD! +" + points;
+                    messageDisplay.style.color = "green";
+                }
+                
+                // Remove the letter from the screen
+                letter.element.remove();
+                
+                // Remove the letter from our array
+                state.letters.splice(i, 1);  // Remove 1 item at position i
+                
+                // Stop checking other letters (we found our match)
+                return;
+            }
+        }
+    }
+};
+
+
+// Handle when a key is released (KeyboardEvent handler)
+function handleKeyRelease(event) {
+    const key = event.key.toLowerCase();  // Get the key that was released
+    
+    // Check if shift key was released
+    if (key === "shift") {
+        state.shiftHeld = false;  // Remember shift is no longer held
+    }
+};
