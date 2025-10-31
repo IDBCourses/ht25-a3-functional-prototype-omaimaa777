@@ -43,3 +43,31 @@ function setup() {
 }
 
 //start a new game
+function startGame() {
+    // Reset all state values to starting values
+    state.score = 0;
+    state.misses = 0;
+    state.isPlaying = true;  // Game is now running
+    state.letters = [];  // Empty the letters array
+    state.shiftHeld = false;
+    
+    // Update what shows on screen
+    scoreDisplay.textContent = "0";
+    missesDisplay.textContent = "0";
+    messageDisplay.textContent = "";  // Clear any old messages
+    
+    // Change the button text
+    startButton.textContent = "Playing...";
+    startButton.disabled = true;  // Can't click button during game
+    
+    // Remove any old letters that might still be on screen
+    let oldLetters = document.querySelectorAll(".falling-letter");
+    // Loop through all old letters 
+    for (let i = 0; i < oldLetters.length; i++) {
+        oldLetters[i].remove();  // Remove each one
+    }
+    
+    // Start the game loop
+    loop();
+}
+
