@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" type="module"></script>
+    <title>Rhythm Typer Game</title>
     <link rel="stylesheet" href="style.css">
-    <title>Code Playground</title>
 </head>
-
 <body>
+    <h1>Rhythm Typer</h1>
+    
+    <div id="game-info">
+        <div>Score: <span id="score">0</span></div>
+        <div>Lives: <span id="lives">3</span></div>
+        <div>Level: <span id="level">1</span></div>
+    </div>
+    
+    <div id="game-container">
+        <div class="lane" id="lane-left">
+            <div class="target-zone"></div>
+        </div>
+        <div class="lane" id="lane-middle">
+            <div class="target-zone"></div>
+        </div>
+        <div class="lane" id="lane-right">
+            <div class="target-zone"></div>
+        </div>
+    </div>
+    
+    <button id="start-button">Start Game</button>
+    
+    <div id="instructions">
+        <strong>How to Play:</strong><br>
+        Type the letters when they reach the target zone at the bottom!<br>
+        Left keys (Q,W,E,A,S,D,Z,X,C) = Left lane<br>
+        Middle keys (R,T,F,G,V,B) = Middle lane<br>
+        Right keys (Y,U,I,O,P,H,J,K,L,N,M) = Right lane<br>
+        Hold SHIFT while typing for bonus points!
+    </div>
 
-    <div id="thing0" class="thing"></div>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
