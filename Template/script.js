@@ -71,3 +71,54 @@ function startGame() {
     loop();
 }
 
+
+// Game loop - This runs many times per second (like 60 times per second)
+function loop() {
+    // If game is not playing, stop the loop
+    if (!state.isPlaying) {
+        return;  // Exit the function
+    }
+    
+    // Randomly spawn new letters (2% chance each frame)
+    const randomNumber = Math.random();  // Get random number between 0 and 1
+    if (randomNumber < 0.02) {  // 2% chance
+        spawnLetter();  // Create a new letter
+    }
+    
+    // Loop through all falling letters (this is a FOR LOOP with an ARRAY)
+    for (let i = 0; i < state.letters.length; i++) {
+        const letter = state.letters[i];  // Get the letter at position i
+        
+        // Move the letter down by 2 pixels
+        letter.y = letter.y + 2;  // Add 2 to its y position
+        letter.element.style.top = letter.y + "px";  // Update its position on screen
+        
+        // Check if letter went past the bottom (400 pixels)
+        if (letter.y > 400) {
+            // Player missed this letter!
+            
+            // Add one to misses
+            state.misses = state.misses + 1;
+            missesDisplay.textContent = state.misses;  // Update display
+            
+            // Remove the letter from the screen
+            letter.element.remove();
+            
+            // Remove the letter from our array
+            state.letters.splice(i, 1);  // Remove 1 item at position i
+            i = i - 1;  // Go back one position because array is now shorter
+            
+            // Show a message to the player
+            messageDisplay.textContent = "MISSED!";
+            messageDisplay.style.color = "red";
+            
+            // Check if player missed too many (10 misses = game over)
+            if (state.misses >= 10) {
+                gameOver();  // End the game
+            }
+        }
+    }
+    
+    // Call this function again next frame (makes the loop keep going)
+    requestAnimationFrame(loop);
+}
