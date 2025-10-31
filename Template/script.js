@@ -122,3 +122,60 @@ function loop() {
     // Call this function again next frame (makes the loop keep going)
     requestAnimationFrame(loop);
 }
+
+
+// Create a new falling letter
+function spawnLetter() {
+    // Create an array of possible lanes
+    const lanes = ["left", "middle", "right"];
+    
+    // Pick a random lane
+    const randomIndex = Math.floor(Math.random() * lanes.length);  // Random number 0, 1, or 2
+    const lane = lanes[randomIndex];  // Get that lane from array
+    
+    // Variables to hold the letter and its x position
+    let letter = "";
+    let xPosition = 0;
+    
+    // Choose letter and position based on which lane was picked
+    if (lane === "left") {
+        // Pick a random key from left keys
+        const randomIndex = Math.floor(Math.random() * settings.leftKeys.length);
+        letter = settings.leftKeys[randomIndex];
+        xPosition = 75;  // Left lane x position
+        
+    } else if (lane === "middle") {
+        // Pick a random key from middle keys
+        const randomIndex = Math.floor(Math.random() * settings.middleKeys.length);
+        letter = settings.middleKeys[randomIndex];
+        xPosition = 275;  // Middle lane x position
+        
+    } else {
+        // Must be right lane - pick a random key from right keys
+        const randomIndex = Math.floor(Math.random() * settings.rightKeys.length);
+        letter = settings.rightKeys[randomIndex];
+        xPosition = 475;  // Right lane x position
+    }
+    
+    // Create a new div element for the letter
+    const letterDiv = document.createElement("div");
+    letterDiv.className = "falling-letter";  // Give it the CSS class
+    letterDiv.textContent = letter.toUpperCase();  // Show the letter in uppercase
+    letterDiv.style.left = xPosition + "px";  // Position it horizontally
+    letterDiv.style.top = "-50px";  // Start it above the screen
+    
+    // Add the div to the game container
+    gameContainer.appendChild(letterDiv);
+    
+    // Create an object to remember information about this letter
+    const letterObject = {
+        element: letterDiv,  // The HTML element
+        letter: letter,  // The letter character (lowercase)
+        lane: lane,  // Which lane it's in
+        x: xPosition,  // Its x position
+        y: -50  // Its y position (starts at -50)
+    };
+    
+    // Add this object to our array of letters
+    state.letters.push(letterObject);
+}
