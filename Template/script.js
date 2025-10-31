@@ -23,3 +23,23 @@ const scoreDisplay = document.getElementById("score");  // The score number
 const missesDisplay = document.getElementById("misses");  // The misses number
 const messageDisplay = document.getElementById("message");  // The feedback message
 const startButton = document.getElementById("start-button");  // The start button
+
+// Setup - This function runs once when the page loads
+function setup() {
+    // Add event listener to start button 
+    startButton.addEventListener("click", function() {
+        startGame();  // Call startGame when button is clicked
+    });
+    
+    // Listen for any key being pressed down 
+    document.addEventListener("keydown", function(event) {
+        handleKeyPress(event);  // Call handleKeyPress when key is pressed
+    });
+    
+    // Listen for any key being released 
+    document.addEventListener("keyup", function(event) {
+        handleKeyRelease(event);  // Call handleKeyRelease when key is released
+    });
+}
+
+//start a new game
