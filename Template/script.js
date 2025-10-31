@@ -16,3 +16,10 @@ let state = {
   letters: [], //array to hold all falling letter objects
   shiftHeld: false //if shift key is currently pressed
 };
+
+// DOM - getting elements from HTML
+const gameContainer = document.getElementById("game-container");  // The game area
+const scoreDisplay = document.getElementById("score");  // The score number
+const missesDisplay = document.getElementById("misses");  // The misses number
+const messageDisplay = document.getElementById("message");  // The feedback message
+const startButton = document.getElementById("start-button");  // The start button
