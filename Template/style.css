@@ -2,3 +2,131 @@
     font-family: "Comic_Neue";
     src: url(Comic_Neue/ComicNeue-Regular.ttf);
 }
+
+
+/* Style the whole page */
+body {
+    font-family: "Comic_Neue", Arial, sans-serif;
+    background-color: lightpink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Style the title */
+h1 {
+    color: rgb(183, 84, 100);
+    margin: 10px 0;
+}
+
+/* Container for score and misses */
+#game-info {
+    display: flex;
+    gap: 30px;
+    color: rgb(183, 84, 100);
+    font-size: 20px;
+}
+
+/* The main game area where letters fall */
+#game-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: rgb(255, 240, 245);
+    border: 3px solid rgb(183, 84, 100);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Each lane (left, middle, right) */
+.lane {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    border-right: 2px dashed rgb(255, 192, 203);
+}
+
+/* Position the left lane */
+#lane-left {
+    left: 0;
+}
+
+/* Position the middle lane */
+#lane-middle {
+    left: 200px;
+}
+
+/* Position the right lane */
+#lane-right {
+    left: 400px;
+    border-right: none;
+}
+
+/* The target zone at the bottom of each lane */
+.target-zone {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 60px;
+    background-color: rgba(183, 84, 100, 0.3);
+    border-top: 3px solid rgb(183, 84, 100);
+}
+
+/* Style for falling letters */
+.falling-letter {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: pink;
+    border: 2px solid rgb(183, 84, 100);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: rgb(183, 84, 100);
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the start button */
+button {
+    background-color: pink;
+    color: rgb(183, 84, 100);
+    border: 2px solid rgb(183, 84, 100);
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: "Comic_Neue", Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgb(183, 84, 100);
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: rgb(216, 106, 132);
+}
+
+/* Button when clicked */
+button:active {
+    box-shadow: none;
+}
+
+/* Instructions text */
+#instructions {
+    color: rgb(183, 84, 100);
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Feedback message (GOOD!, MISS!, etc.) */
+#message {
+    color: rgb(183, 84, 100);
+    font-size: 24px;
+    font-weight: bold;
+    min-height: 30px;
+}
