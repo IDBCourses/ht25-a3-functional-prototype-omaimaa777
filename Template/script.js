@@ -257,3 +257,19 @@ function handleKeyRelease(event) {
         state.shiftHeld = false;  // Remember shift is no longer held
     }
 };
+
+// End the game
+function gameOver() {
+    state.isPlaying = false;  // Stop the game
+    
+    // Show final score message
+    messageDisplay.textContent = "GAME OVER! Final Score: " + state.score;
+    messageDisplay.style.color = "rgb(183, 84, 100)";
+    
+    // Change button so player can play again
+    startButton.textContent = "Play Again";
+    startButton.disabled = false;  // Button can be clicked again
+}
+
+// Call setup when the page loads - THIS STARTS EVERYTHING
+setup();
